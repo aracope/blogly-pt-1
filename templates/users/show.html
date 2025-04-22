@@ -1,0 +1,21 @@
+<!-- This page shows a detailed view of an individual user's profile, with options to edit or delete the user. -->
+{% extends "base.html" %}
+
+{% block title %}{{ user.get_full_name() }}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+  <div class="card">
+    <h1>{{ user.get_full_name() }}</h1>
+    {% if user.image_url %}
+      <img src="{{ user.image_url }}" alt="Profile picture of {{ user.first_name }}">
+    {% endif %}
+  </div>
+  <div>
+    <a href="/users/{{ user.id }}/edit"><button>Edit</button></a>
+    <form action="/users/{{ user.id }}/delete" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
